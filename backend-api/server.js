@@ -4,6 +4,8 @@ const dotenv = require('dotenv');
 const cors = require('cors');
 const bodyParser = require('body-parser');
 
+const studentAPI = require('./src/api/student.api'); 
+
 dotenv.config();
 const app = express();
 app.use(cors());
@@ -35,3 +37,4 @@ app.route('/').get((req, res) =>{
   res.send("SAMMA SAMADHI DHAMMA SCHOOL - STUDENT MANAGEMENT SYSTEM ");
 });
 
+app.use('/student',studentAPI);
