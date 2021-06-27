@@ -4,17 +4,22 @@ const dotenv = require('dotenv');
 const cors = require('cors');
 const bodyParser = require('body-parser');
 
-const PORT = process.env.PORT || 8080;
+dotenv.config();
+const app = express();
+app.use(cors());
+app.use(bodyParser.json());
+
+const PORT = process.env.PORT || 8090;
 const MONGODB_URL = process.env.MONGODB_URI;
 
 mongoose.connect(MONGODB_URL, {
   useCreateIndex: true,
   useNewUrlParser: true,
   useUnifiedTopology: true,
-  useFindAndModify: true
+  useFindAndModify: false
 },(error) =>{
   if(error){
-    console.log("Database error : ", error.message);
+    console.log('Database error : ', error.message);
   }
 });
 
