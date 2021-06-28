@@ -4,12 +4,14 @@ const dotenv = require('dotenv');
 const cors = require('cors');
 const bodyParser = require('body-parser');
 
+const studentAPI = require('./src/api/student.api'); 
+
 dotenv.config();
 const app = express();
 app.use(cors());
 app.use(bodyParser.json());
 
-const PORT = process.env.PORT || 8090;
+const PORT = process.env.PORT || 8080;
 const MONGODB_URL = process.env.MONGODB_URI;
 
 mongoose.connect(MONGODB_URL, {
@@ -35,3 +37,4 @@ app.route('/').get((req, res) =>{
   res.send("SAMMA SAMADHI DHAMMA SCHOOL - STUDENT MANAGEMENT SYSTEM ");
 });
 
+app.use('/student',studentAPI);
