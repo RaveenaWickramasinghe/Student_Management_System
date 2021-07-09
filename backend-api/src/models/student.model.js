@@ -6,7 +6,7 @@ const StudentSchema = new mongoose.Schema({
   address: {type: String, required: true, trim: true},
   phonenumber: {type: String, required: true, trim: true},
   grade: {type: Number, required: true, trim: true},
-  whatsappavailable: {type: Boolean, required: false, default: false },
+  whatsappnumber: {type: String, required: false, trim: true },
   parentname: {type: String, required: true, trim: true},
   parentoccupation: {type: String, required: true, trim: true}
 });
