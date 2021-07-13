@@ -18,7 +18,7 @@ mongoose.connect(MONGODB_URL, {
   useCreateIndex: true,
   useNewUrlParser: true,
   useUnifiedTopology: true,
-  useFindAndModify: false
+  useFindAndModify: true
 },(error) =>{
   if(error){
     console.log('Database error : ', error.message);

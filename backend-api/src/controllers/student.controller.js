@@ -22,9 +22,43 @@ const getAllStudents = async(req,res) => {
   .catch(error => {
     res.status(500).send({ error: error.message });
   })
-}
+};
+
+//Update student
+const updateStudent = async(req, res, next) => {
+  if (req.body && req.body._id) {
+    let student = await Student.findById(req.body._id);
+    if (!student) {
+      response.handleError(res, 'Student  not found');
+      return;
+    }
+    let studentUpdateData = {
+      name: req.body.name,
+      birthday: req.body.birthday,
+      address: req.body.address,
+      phonenumber: req.body.phonenumber,
+      grade: req.body.grade,
+      whatsappnumber: req.body.whatsappnumber,
+      parentname: req.body.parentname,
+      parentoccupation: req.body.parentoccupation
+    };
+    
+    await Student.findByIdAndUpdate(req.body._id, studentUpdateData)
+    .then(data => {
+      response.sendRespond(res, data);
+      next();
+    })
+    .catch(error => {
+      response.handleError(res, error.message);
+      next();
+    });
+  }
+};
+
+
 
 module.exports = {
   createStudent,
-  getAllStudents
+  getAllStudents,
+  updateStudent
 };
