@@ -55,10 +55,22 @@ const updateStudent = async(req, res, next) => {
   }
 };
 
+//Delete student
+const deleteStudent = async(req, res, next) => {
+  if (req.params && req.params.id) {
+    const student = await Student.findByIdAndDelete(req.student.id);
+    response.sendRespond(res, student);
+    next();
+  } else {
+    response.handleError(req, 'Parameter id is required');
+    next();
+  }
+};
 
 
 module.exports = {
   createStudent,
   getAllStudents,
-  updateStudent
+  updateStudent,
+  deleteStudent
 };
